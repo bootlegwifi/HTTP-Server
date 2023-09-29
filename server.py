@@ -12,7 +12,7 @@ t = Terminal()
 def fastshell():
 	cwd = os.getcwd()
 	username = os.getlogin()
-	print("[" + t.green("+") + "]Shell in [" + username + ":" + cwd + "]$") 
+	print("[" + t.green("+") + "][" + username + ":" + cwd + "]$") 
 	print("[" + t.green("+") + "]Enter 'Q' to quit")
 	try:
 		while True:
@@ -27,7 +27,7 @@ def fastshell():
 	except KeyboardInterrupt:
 		print("\n[" + t.red("!") + "]Critical. User Aborted")
 
-print("\n[" + t.green("+") + "]HTTP Server\n")
+print("\n[" + t.green("+") + "]Bootleg HTTP Server\n")
 
 default = input("[" + t.magenta("?") + "]Default config? [Y]es/[N]o: ").lower()
 if default == 'y':
@@ -38,24 +38,24 @@ if default == 'y':
 	
 elif default == 'n':
 	
-	print("[" + t.green("+") + "]Specify custom values.\n")
-	PORT = eval(input("Enter port: "))
-	IP = input("Enter host: ")
+	print("[" + t.green("+") + "]Specify values:\n")
+	PORT = eval(input("Port #: "))
+	IP = input("Host IP: ")
 	
 	print("[" + t.green("+") + "]Invoke a shell to make changes in server directory?")
 	invoke = input("[" + t.magenta("?") + "][Y]es/[N]o: ").lower()
 	if invoke == 'y':
 		fastshell()
 	elif invoke == 'n':
-		print("[" + t.green("+") + "]Done.")
+		print("[" + t.green("+") + "]Done")
 	else:
-		print("\n[" + t.red("!") + "]Unhandled Option.")
+		print("\n[" + t.red("!") + "]Unhandled Option")
 		
 else:
-	print("\n[" + t.red("!") + "]Unhandled Option.")
+	print("\n[" + t.red("!") + "]Unhandled Option")
 
 
-print("[" + t.green("+") + "]Starting Server.\n")
+print("[" + t.green("+") + "]Starting Server...\n")
 
 Handler = http.server.SimpleHTTPRequestHandler
 Handler.extensions_map.update({
@@ -65,13 +65,13 @@ Handler.extensions_map.update({
 try:
 	httpd = socketserver.TCPServer((IP, PORT), Handler)
 except Exception as e:
-	print("\n[" + t.red("!") + "]Critical. An exception was raised with the following error message")
+	print("\n[" + t.red("!") + "]Critical! An exception was raised with the following error message:")
 	print(e)
 
-print("[" + t.green("+") + "]Serving at", IP, repr(PORT))
+print("[" + t.green("+") + "]Serving at:", IP, repr(PORT))
 
 # Catching keyboard interrupt for aesthetics purposes
 try:
 	httpd.serve_forever()
 except KeyboardInterrupt:
-	print("\n[" + t.red("!") + "]User Aborted.")
+	print("\n[" + t.red("!") + "]User Aborted")
