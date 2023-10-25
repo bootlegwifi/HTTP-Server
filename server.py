@@ -27,29 +27,32 @@ def fastshell():
 	except KeyboardInterrupt:
 		print("\n[" + t.red("!") + "]Critical. User Aborted")
 
+def invokeshell():
+    print("[" + t.green("+") + "]Invoke a shell to make changes in server directory?")
+    invoke = input("[" + t.magenta("?") + "][Y]es/[N]o: ").lower()
+    if invoke == 'y':
+        fastshell()
+    elif invoke == 'n':
+        print("[" + t.green("+") + "]Done")
+    else:
+        print("\n[" + t.red("!") + "]Unhandled Option")
+
 print("\n[" + t.green("+") + "]Bootleg HTTP Server\n")
 
 default = input("[" + t.magenta("?") + "]Default config? [Y]es/[N]o: ").lower()
 if default == 'y':
-	
-	PORT = 8000
-	IP = "127.0.0.1"
-	print("\n[" + t.green("+") + "]Default config loaded\n")
+
+    PORT = 8000
+    IP = "127.0.0.1"
+    invokeshell()
+    print("\n[" + t.green("+") + "]Default config loaded\n")
 	
 elif default == 'n':
 	
 	print("[" + t.green("+") + "]Specify values:\n")
 	PORT = eval(input("Port #: "))
 	IP = input("Host IP: ")
-	
-	print("[" + t.green("+") + "]Invoke a shell to make changes in server directory?")
-	invoke = input("[" + t.magenta("?") + "][Y]es/[N]o: ").lower()
-	if invoke == 'y':
-		fastshell()
-	elif invoke == 'n':
-		print("[" + t.green("+") + "]Done")
-	else:
-		print("\n[" + t.red("!") + "]Unhandled Option")
+	invokeshell()
 		
 else:
 	print("\n[" + t.red("!") + "]Unhandled Option")

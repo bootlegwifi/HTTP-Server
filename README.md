@@ -1,7 +1,7 @@
 # Simple python HTTP-Server
 
 
-## Dependencies:
-- blessings
+#### Dependencies:
+`blessings`
 
-###### invokes an OS shell in the current directory the files are being served from
+##### Invokes an OS shell in the current directory the files are being served from.
