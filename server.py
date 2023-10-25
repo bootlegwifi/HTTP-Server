@@ -70,7 +70,7 @@ except Exception as e:
 
 print("[" + t.green("+") + "]Serving at:", IP, repr(PORT))
 
-# Catching keyboard interrupt for aesthetics purposes
+# Watching keyboard interrupt
 try:
 	httpd.serve_forever()
 except KeyboardInterrupt:
